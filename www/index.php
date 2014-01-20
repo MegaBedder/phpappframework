@@ -27,6 +27,8 @@ $a = new App();
 $a->setup();
 $t = new WsTmpl();
 
+require_once("../lib/actions.php");
+
 $t->setData(
     array(
         "page-title"=>$a->getPageTitle(),
