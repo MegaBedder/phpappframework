@@ -24,4 +24,8 @@ if ($a->isGet("a", "index") && $a->isGet("s", "all")) {
     $a->setPageTitle($a->getGet("t"));
     $a->setHeader($a->getGet("t"));
     $a->setArticle("Other page content.");
+} else {
+    $a->setPageTitle("Home");
+    $a->setHeader("Welcome");
+    $a->setArticle("This is the home page.");
 }
