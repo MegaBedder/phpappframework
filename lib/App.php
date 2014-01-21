@@ -23,6 +23,9 @@ class App {
 
     private $t;
     private $cfg;
+    private $header;
+    private $article;
+    private $pageTitle;
 
     public function __construct() {
         $this->t = new WsTmpl();
@@ -101,18 +104,54 @@ class App {
         return $o;
     }
 
+    public function isGet($var, $is) {
+        if (isset($_GET[$var]) && isset($is) && $_GET[$var] === $is) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isPost($var, $is) {
+        if (isset($_POST[$var]) && isset($is) && $_POST[$var] === $is) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isGetSet($var) {
+        if (isset($_GET[$var])) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isPostSet($var) {
+        if (isset($_POST[$var])) {
+            return true;
+        }
+        return false;
+    }
+
     public function getPageTitle() {
-        return $this->cfg->pageTitlePrefix;
+        return $this->cfg->pageTitlePrefix . ": " . $this->pageTitle;
+    }
+
+    public function setPageTitle($pageTitle) {
+        $this->pageTitle = $pageTitle;
     }
 
     public function getHeader() {
-        $this->t->setData(array("page-header"=>"<h1>Welcome</h1>"));
+        $this->t->setData(array("page-header"=>"<h1>" . $this->header . "</h1>"));
         $this->t->setFile("../tmpl/page-header.tmpl");
         return $this->t->compile();
     }
 
+    public function setHeader($header) {
+        $this->header = $header;
+    }
+
     public function getFooter() {
-        $this->t->setData(array("page-footer"=>"<p class=\"text-muted\">Footer</p>"));
+        $this->t->setData(array("page-footer"=>"<p class=\"text-muted\">Siamnet &copy;2014</p>"));
         $this->t->setFile("../tmpl/page-footer.tmpl");
         return $this->t->compile();
     }
@@ -124,9 +163,13 @@ class App {
     }
 
     public function getArticle() {
-        $this->t->setData(array("page-article"=>"<p>Page content.</p>"));
+        $this->t->setData(array("page-article"=>$this->article));
         $this->t->setFile("../tmpl/page-article.tmpl");
         return $this->t->compile();
+    }
+
+    public function setArticle($article) {
+        $this->article = $article;
     }
 
     public function collapseChar($char, $dir) {

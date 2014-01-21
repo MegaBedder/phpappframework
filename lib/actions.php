@@ -16,6 +16,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-if ($a->getGet("a") === "someAction") {
-    // do something
+if ($a->isGet("a", "index") && $a->isGet("s", "all")) {
+    $a->setPageTitle("All documents index");
+    $a->setHeader("All documents index");
+    $a->setArticle("Some page content.");
+} else if ($a->isGet("a", "view") && $a->isGetSet("d") && $a->isGetSet("f") && $a->isGetSet("t")) {
+    $a->setPageTitle($a->getGet("t"));
+    $a->setHeader($a->getGet("t"));
+    $a->setArticle("Other page content.");
 }

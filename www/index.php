@@ -26,6 +26,7 @@ require_once("../lib/WsTmpl.php");
 $a = new App();
 $a->setup();
 $t = new WsTmpl();
+$cfg = Config::getInstance();
 
 require_once("../lib/actions.php");
 

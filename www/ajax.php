@@ -29,9 +29,8 @@ $t = new WsTmpl();
 
 ob_start();
 ob_implicit_flush(0);
-print($html);
 
-if ($a->getGet("a") === "someAction") {
+if ($a->isGet("a", "someAction")) {
     print(json_encode(array("var"=>"val")));
 }
 

@@ -27,9 +27,13 @@ class Config {
         $this->mysqlPassword = "pass";
         $this->mysqlDatabase = "db";
 
-        $this->rootDir = "/var/www/blog";
+        // Edit
+        $this->rootDir = "/var/www/app";
         $this->siteTitle = "Siamnet";
         $this->pageTitlePrefix = "Siamnet";
+
+        // Not intended to be edited.
+        $this->moreConfig = "blah";
     }
 
     public static function getInstance () {
